@@ -16,7 +16,6 @@ typedef void (^ _Nullable CustomAlertViewControlSetupHandler)(UIView * _Nonnull 
 typedef void (^ _Nullable CustomAlertViewLabelSetupHandler)(UILabel * _Nonnull label);
 typedef void (^ _Nullable CustomAlertViewTextFieldsSetupHandler)(UITextField * _Nonnull textField, NSUInteger index);
 
-
 @interface CustomAlertView : UIView<UIAppearance>
 
 @property (nonatomic, copy) horizontalBlock _Nullable horizontalBlock;
@@ -24,49 +23,49 @@ typedef void (^ _Nullable CustomAlertViewTextFieldsSetupHandler)(UITextField * _
 @property (nonatomic, copy) verticalBlock _Nullable verticalBlock;
 
 @property (nonatomic, copy) otherBlock _Nullable otherBlock;
-
+/** Default is 15 */
 @property (assign, nonatomic) CGFloat layerCornerRadius UI_APPEARANCE_SELECTOR;
-
+/** Default is 30 */
 @property (assign, nonatomic) CGFloat viewPadding UI_APPEARANCE_SELECTOR;
-
+/** Default is 10 */
 @property (assign, nonatomic) CGFloat internalPadding UI_APPEARANCE_SELECTOR;
-
+/** Default is 44 */
 @property (assign, nonatomic) CGFloat textFieldHeight UI_APPEARANCE_SELECTOR;
-
+/** Default is 44 */
 @property (assign, nonatomic) CGFloat centerButtonHeight UI_APPEARANCE_SELECTOR;
-
+/** Default is 44 */
 @property (assign, nonatomic) CGFloat bottomButtonHeight UI_APPEARANCE_SELECTOR;
-
+/** Default is 1 */
 @property (assign, nonatomic) CGFloat separatorThickness UI_APPEARANCE_SELECTOR;
-
+/** Default is 20 */
 @property (assign, nonatomic) CGFloat titleTextFont UI_APPEARANCE_SELECTOR;
-
+/** Default is 16 */
 @property (assign, nonatomic) CGFloat messageTextFont UI_APPEARANCE_SELECTOR;
-
+/** Default is 16 */
 @property (assign, nonatomic) CGFloat textFieldTextFont UI_APPEARANCE_SELECTOR;
-
+/** Default is 17 */
 @property (assign, nonatomic) CGFloat centerButtonTextFont UI_APPEARANCE_SELECTOR;
-
+/** Default is 14 */
 @property (assign, nonatomic) CGFloat centerLabelTextFont UI_APPEARANCE_SELECTOR;
-
+/** Default is 18 */
 @property (assign, nonatomic) CGFloat bottomButtonTextFont UI_APPEARANCE_SELECTOR;
-
+/** Default is whiteColor */
 @property (strong, nonatomic, nullable) UIColor *backGroundColor UI_APPEARANCE_SELECTOR;
-
+/** Default is whiteColor */
 @property (strong, nonatomic, nullable) UIColor *centerBackColor UI_APPEARANCE_SELECTOR;
-
+/** Default is blackColor */
 @property (strong, nonatomic, nullable) UIColor *titleTextColor UI_APPEARANCE_SELECTOR;
-
+/** Default is blackColor */
 @property (strong, nonatomic, nullable) UIColor *messageTextColor UI_APPEARANCE_SELECTOR;
-
+/** Default is lightGrayColor */
 @property (strong, nonatomic, nullable) UIColor *separatorTextColor UI_APPEARANCE_SELECTOR;
-
+/** Default is blackColor */
 @property (strong, nonatomic, nullable) UIColor *cancelButtonTextColor UI_APPEARANCE_SELECTOR;
-
+/** Default is blackColor */
 @property (strong, nonatomic, nullable) UIColor *destructiveButtonTextColor UI_APPEARANCE_SELECTOR;
-
+/** Default is nill */
 @property (strong, nonatomic, nullable) UIBlurEffect *backgroundBlurEffect UI_APPEARANCE_SELECTOR;
-
+/** Default is nill */
 @property (strong, nonatomic, nullable) UIBlurEffect *tipViewBlurEffect UI_APPEARANCE_SELECTOR;
 /** Default is NO */
 @property (assign, nonatomic) BOOL backViewTapDismiss UI_APPEARANCE_SELECTOR;

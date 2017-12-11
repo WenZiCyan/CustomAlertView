@@ -33,7 +33,6 @@
         
         if ([UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeLeft || [UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeRight) {
             
-            
         } else {
             NSLog(@"竖屏");
             
