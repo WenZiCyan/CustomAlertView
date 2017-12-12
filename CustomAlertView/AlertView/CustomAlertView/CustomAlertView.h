@@ -71,6 +71,16 @@ typedef void (^ _Nullable CustomAlertViewTextFieldsSetupHandler)(UITextField * _
 @property (assign, nonatomic) BOOL backViewTapDismiss UI_APPEARANCE_SELECTOR;
 /** Default is Yes */
 @property (assign, nonatomic) BOOL buttomBtnHorizontal UI_APPEARANCE_SELECTOR;
+/** Default is NO */
+@property (assign, nonatomic) BOOL dismissBtnNeed UI_APPEARANCE_SELECTOR;
+/** Default is @"" */
+@property (strong, nonatomic, nullable) NSString *dismissBtnImg UI_APPEARANCE_SELECTOR;
+/** Default is 10 */
+@property (assign, nonatomic) CGFloat dismissBtnTopDis UI_APPEARANCE_SELECTOR;
+/** Default is -10 */
+@property (assign, nonatomic) CGFloat dismissBtnRightDis UI_APPEARANCE_SELECTOR;
+/** Default is 20 */
+@property (assign, nonatomic) CGFloat dismissBtnSize UI_APPEARANCE_SELECTOR;
 
 /**
  *  自定义弹框
@@ -105,12 +115,14 @@ typedef void (^ _Nullable CustomAlertViewTextFieldsSetupHandler)(UITextField * _
  *  @param title 显示的标题
  *  @param message 显示的副标题
  *  @param lContentTitles 左具体内容
+ *  @param cContentTitles 中具体内容
  *  @param rContentTitles 右具体内容
  *  @param buttonTitles button文字
  */
 - (nonnull instancetype)initWithContentsImgAndTitle:(nullable NSString *)title
                                             message:(nullable NSString *)message
                                      lContentTitles:(nullable NSArray<NSString *> *)lContentTitles
+                                     cContentTitles:(nullable NSArray<NSString *> *)cContentTitles
                                      rContentTitles:(nullable NSArray<NSString *> *)rContentTitles
                                        buttonTitles:(nullable NSArray<NSString *> *)buttonTitles;
 

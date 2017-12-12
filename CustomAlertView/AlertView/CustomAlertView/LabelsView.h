@@ -10,11 +10,12 @@
 
 typedef NS_ENUM(NSUInteger, LabelsViewType) {
     LabelsViewTypeOne   = 0,
-    LabelsViewTypeTwo   = 1
+    LabelsViewTypeTwo   = 1,
+    LabelsViewTypeThree = 2
 };
 
 @interface LabelsView : UIView
 
--(void)updateLabelsView:(LabelsViewType)type lLabelStr:(NSString *)lLabelStr rLabelStr:(NSString *)rLabelStr;
+-(void)updateLabelsView:(LabelsViewType)type lLabelStr:(NSString *)lLabelStr cLabelStr:(NSString *)cLabelStr rLabelStr:(NSString *)rLabelStr;
 
 @end

@@ -67,7 +67,7 @@
             break;
             
         case 1:{
-            CustomAlertView *av=[[CustomAlertView alloc]initWithContentAndTitle:@"xxx" message:@"xxx" content:@"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" labelSetupHandler:^(UILabel * _Nonnull label) {
+            CustomAlertView *av=[[CustomAlertView alloc]initWithContentAndTitle:@"xxx" message:@"xxx\nxxx" content:@"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" labelSetupHandler:^(UILabel * _Nonnull label) {
                 
                 label.textColor=[UIColor grayColor];
                 label.textAlignment=NSTextAlignmentLeft;
@@ -78,9 +78,12 @@
             break;
             
         case 2:{
-            CustomAlertView *av=[[CustomAlertView alloc]initWithContentsImgAndTitle:@"xx" message:@"xxxx" lContentTitles:@[@"111",@"222",@"333"] rContentTitles:@[@"444",@"555",@"666"] buttonTitles:nil];
-            av.backViewTapDismiss=YES;
+            CustomAlertView *av=[[CustomAlertView alloc]initWithContentsImgAndTitle:@"xx" message:@"xxxx" lContentTitles:@[@"111",@"222",@"333"] cContentTitles:@[@"aaa",@"aaa",@"aaa"] rContentTitles:@[@"444",@"555",@"666"] buttonTitles:nil];
+//            av.backViewTapDismiss=YES;
+            av.dismissBtnNeed=YES;
+            av.dismissBtnImg=@"叉";
             [av showView];
+            
         }
             break;
             

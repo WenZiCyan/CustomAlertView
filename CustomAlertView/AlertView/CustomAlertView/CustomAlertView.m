@@ -31,6 +31,7 @@
 @property (readwrite) NSString         *message;
 @property (readwrite) NSString         *content;
 @property (readwrite) NSArray          *lContentTitles;
+@property (readwrite) NSArray          *cContentTitles;
 @property (readwrite) NSArray          *rContentTitles;
 @property (readwrite) NSArray          *buttonTitles;
 
@@ -70,6 +71,8 @@
 
 @property (copy, nonatomic) CustomAlertViewTextFieldsSetupHandler textFieldsSetupHandler;
 
+@property (strong, nonatomic) UIButton *dismissBtn;
+
 @end
 
 @implementation CustomAlertView
@@ -105,11 +108,13 @@
 - (nonnull instancetype)initWithContentsImgAndTitle:(nullable NSString *)title
                                             message:(nullable NSString *)message
                                      lContentTitles:(nullable NSArray<NSString *> *)lContentTitles
+                                     cContentTitles:(nullable NSArray<NSString *> *)cContentTitles
                                      rContentTitles:(nullable NSArray<NSString *> *)rContentTitles
                                        buttonTitles:(nullable NSArray<NSString *> *)buttonTitles{
     self=[self initWithUserDefinedAlertView:title message:message numberOfControl:1 controlSetupHandler:nil buttonTitles:buttonTitles];
     if (self) {
         self.lContentTitles=lContentTitles;
+        self.cContentTitles=cContentTitles;
         self.rContentTitles=rContentTitles;
     }
     return self;
@@ -160,6 +165,7 @@
 - (nonnull instancetype)initAsAppearance {
     self = [super init];
     if (self) {
+        
         _layerCornerRadius=15;
         _viewPadding=30;
         _internalPadding=10;
@@ -188,6 +194,12 @@
         
         _backViewTapDismiss=NO;
         _buttomBtnHorizontal=YES;
+        
+        _dismissBtnNeed=NO;
+        _dismissBtnImg=@"";
+        _dismissBtnTopDis=10;
+        _dismissBtnRightDis=-10;
+        _dismissBtnSize=20;
     }
     return self;
 }
@@ -223,6 +235,12 @@
     
     _backViewTapDismiss=arance.backViewTapDismiss;
     _buttomBtnHorizontal=arance.buttomBtnHorizontal;
+    
+    _dismissBtnNeed=arance.dismissBtnNeed;
+    _dismissBtnImg=arance.dismissBtnImg;
+    _dismissBtnTopDis=arance.dismissBtnTopDis;
+    _dismissBtnRightDis=arance.dismissBtnRightDis;
+    _dismissBtnSize=arance.dismissBtnSize;
 }
 
 -(void)createUserDefinedView{
@@ -287,18 +305,27 @@
             centerHeight=CGRectGetMinY(self.contentLabel.frame)+CGRectGetHeight(self.contentLabel.frame)+_internalPadding;
         }
     }
+    if(self.cContentTitles.count==0){
     if ((self.lContentTitles.count>0&&!self.rContentTitles)||(self.rContentTitles.count>0&&!self.lContentTitles)) {
         for (int i=0; i<self.lContentTitles.count?self.lContentTitles.count:self.rContentTitles.count; i++) {
             LabelsView *labelsView=[[LabelsView alloc]initWithFrame:CGRectMake(_internalPadding, centerHeight, tipViewWidth-_internalPadding*2 , _centerButtonHeight)];
             [self.scrollerView addSubview:labelsView];
-            [labelsView updateLabelsView:LabelsViewTypeOne lLabelStr:self.lContentTitles[i]?self.lContentTitles[i]:self.rContentTitles[i] rLabelStr:nil];
+            [labelsView updateLabelsView:LabelsViewTypeOne lLabelStr:self.lContentTitles[i]?self.lContentTitles[i]:self.rContentTitles[i] cLabelStr:nil rLabelStr:nil];
             centerHeight=CGRectGetMinY(labelsView.frame)+CGRectGetHeight(labelsView.frame)+_internalPadding;
         }
     }else if (self.lContentTitles.count>0&&self.rContentTitles.count>0){
         for (int i=0; i<self.lContentTitles.count; i++) {
             LabelsView *labelsView=[[LabelsView alloc]initWithFrame:CGRectMake(_internalPadding, centerHeight, tipViewWidth-_internalPadding*2 , _centerButtonHeight)];
             [self.scrollerView addSubview:labelsView];
-            [labelsView updateLabelsView:LabelsViewTypeTwo lLabelStr:self.lContentTitles[i] rLabelStr:self.rContentTitles[i]];
+            [labelsView updateLabelsView:LabelsViewTypeTwo lLabelStr:self.lContentTitles[i] cLabelStr:nil  rLabelStr:self.rContentTitles[i]];
+            centerHeight=CGRectGetMinY(labelsView.frame)+CGRectGetHeight(labelsView.frame)+_internalPadding;
+        }
+    }
+    }else{
+        for (int i=0; i<self.cContentTitles.count; i++) {
+            LabelsView *labelsView=[[LabelsView alloc]initWithFrame:CGRectMake(_internalPadding, centerHeight, tipViewWidth-_internalPadding*2 , _centerButtonHeight)];
+            [self.scrollerView addSubview:labelsView];
+            [labelsView updateLabelsView:LabelsViewTypeThree lLabelStr:self.lContentTitles[i] cLabelStr:self.cContentTitles[i]  rLabelStr:self.rContentTitles[i]];
             centerHeight=CGRectGetMinY(labelsView.frame)+CGRectGetHeight(labelsView.frame)+_internalPadding;
         }
     }
@@ -394,6 +421,22 @@
         [self addSubview:self.tipView];
     }
     
+    /**
+     *  显示删除按钮
+     */
+    if (_dismissBtnNeed) {
+        self.dismissBtn=[UIButton new];
+        [self.dismissBtn setBackgroundImage:[UIImage imageNamed:_dismissBtnImg] forState:UIControlStateNormal];
+        [self.dismissBtn addTarget:self action:@selector(dismissBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.dismissBtn];
+        
+        [self.dismissBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.tipView.mas_top).offset(_dismissBtnTopDis);
+            make.right.equalTo(self.tipView.mas_right).offset(_dismissBtnRightDis);
+            make.height.width.equalTo(@(_dismissBtnSize));
+        }];
+    }
+    
     if (self.title) {
         
         if (!self.topView) {
@@ -453,6 +496,9 @@
         self.scrollerView.backgroundColor=_centerBackColor;
         [self.tipView insertSubview:self.scrollerView atIndex:0];
     }
+}
+-(void)dismissBtnClick{
+    [self dismissView];
 }
 
 -(void)initCenterViewFrame{
