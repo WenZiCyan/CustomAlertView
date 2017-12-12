@@ -81,6 +81,8 @@ typedef void (^ _Nullable CustomAlertViewTextFieldsSetupHandler)(UITextField * _
 @property (assign, nonatomic) CGFloat dismissBtnRightDis UI_APPEARANCE_SELECTOR;
 /** Default is 20 */
 @property (assign, nonatomic) CGFloat dismissBtnSize UI_APPEARANCE_SELECTOR;
+/** Default is NO */
+@property (assign, nonatomic) BOOL showButtomType UI_APPEARANCE_SELECTOR;
 
 /**
  *  自定义弹框

@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.array=@[@"系统",@"单文字",@"多文字",@"默认textfield+btn",@"自定义textfield",@"自定义textfield+btn"];
+    self.array=@[@"系统",@"单文字",@"多文字",@"默认textfield+btn",@"自定义textfield",@"自定义textfield+btn",@"多按钮"];
 }
 
 
@@ -73,6 +73,9 @@
                 label.textAlignment=NSTextAlignmentLeft;
                 
             } buttonTitles:@[@"1",@"2"]];
+            av.showButtomType=YES;
+            av.viewPadding=0;
+            av.layerCornerRadius=0;
             [av showView];
         }
             break;
@@ -121,7 +124,7 @@
         }
             break;
             
-        default:{
+        case 5:{
             CustomAlertView *av=[[CustomAlertView alloc]initWithUserDefinedAlertView:@"xx" message:@"xxx" numberOfControl:2 controlSetupHandler:^(UIView * _Nonnull view, NSUInteger index) {
                 if (index==0) {
                     view.frame=CGRectMake(0, 0, WIDTHOFSCREEN, 60);
@@ -166,6 +169,22 @@
             av.verticalBlock = ^(NSMutableDictionary * _Nullable dic, long integer) {};
             av.otherBlock = ^(NSMutableDictionary * _Nullable dic, UIButton * _Nonnull btn) {};
         }
+            break;
+            
+        default:{
+            CustomAlertView *av=[[CustomAlertView alloc]initWithContentAndTitle:@"xxx" message:@"xxx\nxxx" content:@"xxx" labelSetupHandler:^(UILabel * _Nonnull label) {
+                
+                label.textColor=[UIColor grayColor];
+                label.textAlignment=NSTextAlignmentCenter;
+                
+            } buttonTitles:@[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8"]];
+            av.showButtomType=YES;
+            av.viewPadding=0;
+            av.layerCornerRadius=0;
+            av.buttomBtnHorizontal=NO;
+            [av showView];
+        }
+            
             break;
     }
 }

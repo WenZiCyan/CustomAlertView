@@ -73,6 +73,8 @@
 
 @property (strong, nonatomic) UIButton *dismissBtn;
 
+@property (strong, nonatomic) UIButton *cancleBtn;
+
 @end
 
 @implementation CustomAlertView
@@ -200,6 +202,8 @@
         _dismissBtnTopDis=10;
         _dismissBtnRightDis=-10;
         _dismissBtnSize=20;
+        
+        _showButtomType=NO;
     }
     return self;
 }
@@ -241,6 +245,8 @@
     _dismissBtnTopDis=arance.dismissBtnTopDis;
     _dismissBtnRightDis=arance.dismissBtnRightDis;
     _dismissBtnSize=arance.dismissBtnSize;
+    
+    _showButtomType=arance.showButtomType;
 }
 
 -(void)createUserDefinedView{
@@ -541,7 +547,12 @@
         }
     }
     totalHeight+=self.buttomView.frame.size.height;
-    self.tipView.frame=CGRectMake(self.viewPadding, (HEIGHTOFSCREEN-totalHeight)/2, tipViewWidth, totalHeight);
+    if (_showButtomType&&!haveTextField) {
+        [self createCancleBtn];
+        self.tipView.frame=CGRectMake(self.viewPadding, HEIGHTOFSCREEN, tipViewWidth, totalHeight);
+    }else{
+        self.tipView.frame=CGRectMake(self.viewPadding, (HEIGHTOFSCREEN-totalHeight)/2, tipViewWidth, totalHeight);
+    }
 }
 
 -(void)createHorizontalBtn{
@@ -611,6 +622,24 @@
     }];
 }
 
+-(void)createCancleBtn{
+    UIView *view=[UIView new];
+    view.backgroundColor=_separatorTextColor;
+    view.frame=CGRectMake(0, totalHeight, tipViewWidth , 10);
+    [self.tipView addSubview:view];
+    
+    self.cancleBtn=[UIButton new];
+    [self.cancleBtn setTitle:@"取消" forState:UIControlStateNormal];
+    [self.cancleBtn setTitleColor:_cancelButtonTextColor forState:UIControlStateNormal];
+    [self.cancleBtn setBackgroundImage:[UIImage createImageWithColor:[UIColor lightGrayColor]] forState:UIControlStateHighlighted];
+    self.cancleBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    self.cancleBtn.titleLabel.font = [UIFont systemFontOfSize:_bottomButtonTextFont];
+    [self.cancleBtn addTarget:self action:@selector(dismissBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    self.cancleBtn.frame=CGRectMake(0, totalHeight+10, tipViewWidth , _centerButtonHeight);
+    [self.tipView addSubview:self.cancleBtn];
+    totalHeight+=_centerButtonHeight+10;
+}
+
 #pragma mark - tableView
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -653,6 +682,9 @@
     [[UIApplication sharedApplication].keyWindow addSubview:self];
     [UIView animateWithDuration:0.3 animations:^{
         self.alpha=1.0;
+        if (_showButtomType&&!haveTextField) {
+            self.tipView.frame=CGRectMake(self.viewPadding, HEIGHTOFSCREEN-totalHeight, tipViewWidth, totalHeight);
+        }
     }];
 }
 
@@ -660,6 +692,9 @@
     [self removeObservers];
     [UIView animateWithDuration:0.3 animations:^{
         self.alpha=0.0;
+        if (_showButtomType&&!haveTextField) {
+            self.tipView.frame=CGRectMake(self.viewPadding, HEIGHTOFSCREEN, tipViewWidth, totalHeight);
+        }
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
         self.backView=nil;
