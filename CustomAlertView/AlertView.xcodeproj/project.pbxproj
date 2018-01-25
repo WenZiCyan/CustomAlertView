@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		227CBAB6C6C766592E3A75F5 /* libPods-AlertView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2B6479EC53924381C3F81C /* libPods-AlertView.a */; };
+		8E3218CF20198227004FE5AC /* CustomAlertView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 8E3218CE20198227004FE5AC /* CustomAlertView.podspec */; };
 		8E6699501FCCF2DE005106D3 /* LabelsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E66994F1FCCF2DE005106D3 /* LabelsView.m */; };
 		8E6699531FCD111F005106D3 /* UIView+SnapshotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6699521FCD111F005106D3 /* UIView+SnapshotView.m */; };
 		8E79CA6E1FDA272D007B80BF /* CustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E79CA6D1FDA272D007B80BF /* CustomAlertView.m */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		6C2FB0E3F921BAFC88151781 /* Pods-AlertView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlertView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AlertView/Pods-AlertView.debug.xcconfig"; sourceTree = "<group>"; };
+		8E3218CE20198227004FE5AC /* CustomAlertView.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CustomAlertView.podspec; sourceTree = "<group>"; };
 		8E66994E1FCCF2DE005106D3 /* LabelsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LabelsView.h; sourceTree = "<group>"; };
 		8E66994F1FCCF2DE005106D3 /* LabelsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LabelsView.m; sourceTree = "<group>"; };
 		8E6699511FCD111F005106D3 /* UIView+SnapshotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SnapshotView.h"; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 		8E7A7E651FC3D60B00C30F13 = {
 			isa = PBXGroup;
 			children = (
+				8E3218CE20198227004FE5AC /* CustomAlertView.podspec */,
 				8E7A7E701FC3D60B00C30F13 /* AlertView */,
 				8E7A7E891FC3D60B00C30F13 /* AlertViewTests */,
 				8E7A7E941FC3D60B00C30F13 /* AlertViewUITests */,
@@ -299,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E7A7E7E1FC3D60B00C30F13 /* LaunchScreen.storyboard in Resources */,
+				8E3218CF20198227004FE5AC /* CustomAlertView.podspec in Resources */,
 				8E7A7E7B1FC3D60B00C30F13 /* Assets.xcassets in Resources */,
 				8E7A7E791FC3D60B00C30F13 /* Main.storyboard in Resources */,
 			);
