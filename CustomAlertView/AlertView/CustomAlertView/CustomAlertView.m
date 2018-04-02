@@ -699,6 +699,9 @@
         [self removeFromSuperview];
         self.backView=nil;
     }];
+    if (self.tapDismissBlock) {
+        self.tapDismissBlock(self);
+    }
 }
 
 -(void)dismissView:(UITapGestureRecognizer *)tap{

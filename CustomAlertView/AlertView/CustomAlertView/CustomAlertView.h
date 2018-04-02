@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class CustomAlertView;
+
 typedef void(^ horizontalBlock) (NSMutableDictionary * _Nullable dic, UIButton * _Nonnull btn);
 typedef void(^ verticalBlock) (NSMutableDictionary * _Nullable dic, long integer);
 typedef void(^ otherBlock) (NSMutableDictionary * _Nullable dic, UIButton * _Nonnull btn);
+typedef void(^ tapDismissBlock) (CustomAlertView * _Nullable view);
 
 typedef void (^ _Nullable CustomAlertViewControlSetupHandler)(UIView * _Nonnull view, NSUInteger index);
 typedef void (^ _Nullable CustomAlertViewLabelSetupHandler)(UILabel * _Nonnull label);
@@ -23,6 +26,8 @@ typedef void (^ _Nullable CustomAlertViewTextFieldsSetupHandler)(UITextField * _
 @property (nonatomic, copy) verticalBlock _Nullable verticalBlock;
 
 @property (nonatomic, copy) otherBlock _Nullable otherBlock;
+
+@property (nonatomic, copy) tapDismissBlock _Nullable tapDismissBlock;
 /** Default is 15 */
 @property (assign, nonatomic) CGFloat layerCornerRadius UI_APPEARANCE_SELECTOR;
 /** Default is 30 */
